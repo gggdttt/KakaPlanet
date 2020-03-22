@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.demo.dao.RecordTermDao">
+    <select id="queryRecordTerm" resultType="com.hello.demo.entity.RecordTerm">
+        SELECT *
+        FROM record_term
+        ORDER BY record_time
+        DESC
+    </select>
+    <select id="queryRecordTermById" resultType="com.hello.demo.entity.RecordTerm">
+        SELECT *
+        FROM record_term
+        WHERE
+        user_wx_id = #{user_wx_id}
+        ORDER BY term_id
+
+        DESC
+    </select>
+    <insert id="insertRecordTerm" useGeneratedKeys="true" parameterType="com.hello.demo.entity.RecordTerm">
+        INSERT INTO
+        record_term(user_wx_id, record_time, record_term, record_day)
+        VALUES
+        (#{user_wx_id}, #{record_time}, #{record_term}, #{record_day},0)
+    </insert>
+    <update id="updateRecordTerm" parameterType="com.hello.demo.entity.RecordTerm">
+        UPDATE record_term
+        <set>help_count=#{help_count}</set>
+        WHERE
+        user_wx_id=#{user_wx_id}
+    </update>
+</mapper>

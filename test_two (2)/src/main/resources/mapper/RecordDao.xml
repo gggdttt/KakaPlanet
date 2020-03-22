@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.demo.dao.RecordDao">
+    <select id="queryRecord" resultType="com.hello.demo.entity.Record">
+        SELECT *
+        FROM record
+    </select>
+
+    <select id="queryRecordById1" resultType="com.hello.demo.entity.Record">
+        SELECT *
+        FROM record
+        WHERE
+        user_wx_id=#{user_wx_id} AND type1=0
+        ORDER BY record_time
+        DESC
+    </select>
+    <select id="queryRecordById2" resultType="com.hello.demo.entity.Record">
+        SELECT *
+        FROM record
+        WHERE
+        user_wx_id=#{user_wx_id} AND type1=1
+        ORDER BY record_time
+        DESC
+    </select>
+    <select id="queryRecordById" resultType="com.hello.demo.entity.Record">
+        SELECT *
+        FROM record
+        WHERE
+        user_wx_id=#{user_wx_id}
+        ORDER BY record_time
+        DESC
+    </select>
+    <insert id="insertRecord"
+        parameterType="com.hello.demo.entity.Record">
+        INSERT INTO
+        record(user_wx_id,content,record_time,type1,type2)
+        VALUES
+        (#{user_wx_id},#{content},#{record_time},#{type1},#{type2})
+    </insert>
+<!--    <update id="updateRecord" parameterType="com.hello.demo.entity.Record">-->
+<!--        UPDATE record()-->
+<!--    </update>-->
+</mapper>

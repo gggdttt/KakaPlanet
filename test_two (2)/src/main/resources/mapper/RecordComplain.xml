@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.demo.dao.RecordComplainDao">
+    <insert id="insertComplain">
+        insert INTO record_complain(record_complain.record_id,record_complain.user_wx_id)
+        VALUES(#{record_id},#{user_wx_id})
+    </insert>
+    <delete id="deleteComplain">
+        delete  from  record_complain
+        where record_id = #{record_id} and user_wx_id = #{user_wx_id}
+    </delete>
+</mapper>

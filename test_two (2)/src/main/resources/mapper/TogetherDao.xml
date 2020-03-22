@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.demo.dao.TogetherDao">
+    <select id="queryTogether" resultType="com.hello.demo.entity.Together">
+        SELECT user_wx_id,target_user_wx_id, content, time
+        FROM together
+        ORDER BY time
+        DESC
+    </select>
+    <select id="queryTogetherById" resultType="com.hello.demo.entity.Together">
+        SELECT user_wx_id, content, time
+        FROM together
+        WHERE
+        user_wx_id=#{user_wx_id}
+        ORDER BY time
+        DESC
+    </select>
+    <select id="queryTogetherByTarget" resultType="com.hello.demo.entity.Together">
+        SELECT  *
+        from  together
+        where
+        user_wx_id = #{user_wx_id} and target_user_wx_id = #{target_user_wx_id}
+        ORDER by time
+        DESC
+    </select>
+    <insert id="insertTogether"
+        parameterType="com.hello.demo.entity.Together">
+        INSERT INTO
+        together(user_wx_id,target_user_wx_id,content,time)
+        VALUES
+        (#{user_wx_id},#{target_user_wx_id},#{content},#{time})
+    </insert>
+</mapper>

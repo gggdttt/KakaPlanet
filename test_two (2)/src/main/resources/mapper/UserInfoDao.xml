@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.demo.dao.UserInfoDao">
+    <select id="queryUserInfo" resultType="com.hello.demo.entity.UserInfo">
+        SELECT *
+        FROM user_info
+    </select>
+    <select id="queryUserInfoByWxId" resultType="com.hello.demo.entity.UserInfo">
+        SELECT *
+        FROM user_info
+        WHERE
+        user_wx_id=#{user_wx_id}
+    </select>
+    <insert id="insertUserInfo" useGeneratedKeys="true" keyProperty="userWxId"
+            keyColumn="user_wx_ID" parameterType="com.hello.demo.entity.UserInfo">
+        INSERT INTO
+        user_info(user_wx_id,user_image_url,user_name,estate)
+        VALUES
+        (#{user_wx_id},#{user_image_url},#{user_name},1400)
+    </insert>
+</mapper>

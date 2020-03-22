@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.demo.dao.PreferListDao">
+    <select id="queryPreferList" resultType="com.hello.demo.entity.PreferList">
+        SELECT p.user_wx_id, prefer_user_wx_id, user_name as prefer_user_wx_name
+        FROM prefer_list p ,user_info u
+        where p.prefer_user_wx_id =u.user_wx_id
+        ORDER BY user_wx_id
+        DESC
+    </select>
+    <select id="queryPreferListById" resultType="com.hello.demo.entity.PreferList">
+        SELECT p.user_wx_id, prefer_user_wx_id, user_name as prefer_user_wx_name,user_image_url
+        FROM prefer_list p ,user_info u
+        where p.prefer_user_wx_id =u.user_wx_id AND p.user_wx_id=#{user_wx_id}
+        ORDER BY user_wx_id
+        DESC
+    </select>
+    <insert id="insertPreferList" >
+        INSERT INTO prefer_list(user_wx_id,prefer_user_wx_id)
+        VALUES  (#{user_wx_id},#{prefer_user_wx_id})
+    </insert>
+    <delete id="deletePreferList">
+        delete from prefer_list
+        where user_wx_id=#{user_wx_id} and prefer_user_wx_id = #{prefer_user_wx_id}
+    </delete>
+</mapper>

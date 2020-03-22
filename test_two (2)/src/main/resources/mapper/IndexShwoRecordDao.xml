@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.demo.dao.IndexShowRecordDao">
+    <select id="queryIndexShowRecordByWxId" resultType="com.hello.demo.entity.IndexShowRecord">
+        SELECT *,(SELECT count(*) from record_good g WHERE g.record_id=r.record_id
+AND g.user_wx_id=#{user_wx_id}) as is_good,
+(SELECT count(*) FROM record_complain c WHERE c.record_id=r.record_id
+AND c.user_wx_id =#{user_wx_id}) as is_complained,
+(SELECT  count(*) FROM  prefer_list p where p.prefer_user_wx_id= r.user_wx_id
+and p.user_wx_id = #{user_wx_id} ) as is_prefer
+FROM record r,user_info u where r.user_wx_id=u.user_wx_id
+order by record_id
+DESC
+    </select>
+</mapper>
